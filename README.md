@@ -58,9 +58,9 @@ pip install -r requirements.txt
  ```
 3. Set up your Google Cloud credentials
 
-4. ## 🐳 Ejecutar la app con Docker (PowerShell)
+4.## 🐳 Running the App with Docker (PowerShell on Windows)
 
-Si estás usando **PowerShell en Windows**, puedes ejecutar la aplicación montando tus credenciales de Google Cloud con este comando multilínea:
+If you're using **PowerShell on Windows**, you can run the application by mounting your Google Cloud credentials with the following multi-line command:
 
 ```powershell
 docker run `
@@ -71,15 +71,18 @@ docker run `
   kiwibot-app
 ```
 
-### 📝 Explicación:
+### 📝 Explanation:
 
-- `-p 8050:8050`: Expone la app en el puerto local 8050.
-- `--env-file .env`: Carga variables de entorno desde tu archivo `.env`.
-- `-v`: Monta la carpeta local que contiene tu archivo JSON de credenciales dentro del contenedor.
-- `-e`: Define la variable `GOOGLE_APPLICATION_CREDENTIALS` dentro del contenedor para que el cliente de BigQuery funcione correctamente.
+- `-p 8050:8050`: Exposes the app on your local port 8050.
+- `--env-file .env`: Loads environment variables from your `.env` file.
+- `-v`: Mounts your local folder containing the JSON credentials into the container.
+- `-e`: Sets the `GOOGLE_APPLICATION_CREDENTIALS` variable so BigQuery can authenticate properly.
 
-> 🔒 **Nota de seguridad**: Es recomendable montar el archivo como volumen (`-v`) en lugar de copiarlo dentro de la imagen para evitar exponer tus credenciales.
+> 🔒 **Security Note**: It’s best practice to mount the credentials file using a volume (`-v`) instead of copying it into the image to avoid exposing secrets.
 
+---
+
+⚠️ Make sure the `graceful-wall-864fbc06ae6c.json` file exists at the specified path. If your file has a different name or location, update the command accordingly.
 ---
 
  ## 📘 Code Explanation
