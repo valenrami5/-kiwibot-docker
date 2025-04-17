@@ -56,7 +56,31 @@ Copiar
 Editar
 pip install -r requirements.txt
  ```
-3. Set up your Google Cloud credentials:
+3. Set up your Google Cloud credentials
+
+4. ## 🐳 Ejecutar la app con Docker (PowerShell)
+
+Si estás usando **PowerShell en Windows**, puedes ejecutar la aplicación montando tus credenciales de Google Cloud con este comando multilínea:
+
+```powershell
+docker run `
+  -p 8050:8050 `
+  --env-file .env `
+  -v "C:/Users/Valentina Ramirez/Documents/valen:/app/creds" `
+  -e GOOGLE_APPLICATION_CREDENTIALS=/app/creds/graceful-wall-864fbc06ae6c.json `
+  kiwibot-app
+```
+
+### 📝 Explicación:
+
+- `-p 8050:8050`: Expone la app en el puerto local 8050.
+- `--env-file .env`: Carga variables de entorno desde tu archivo `.env`.
+- `-v`: Monta la carpeta local que contiene tu archivo JSON de credenciales dentro del contenedor.
+- `-e`: Define la variable `GOOGLE_APPLICATION_CREDENTIALS` dentro del contenedor para que el cliente de BigQuery funcione correctamente.
+
+> 🔒 **Nota de seguridad**: Es recomendable montar el archivo como volumen (`-v`) en lugar de copiarlo dentro de la imagen para evitar exponer tus credenciales.
+
+---
 
  ## 📘 Code Explanation
 
